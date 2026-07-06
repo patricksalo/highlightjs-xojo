@@ -16,55 +16,51 @@ export default function(hljs) {
         'Each Else ElseIf End Enum Event Exception Exit Extends Finally For Function ' +
         'Global GoTo Handles If Implements In Inherits Interface Is IsA ' +
         'Lib Loop Me Mod Module ' +
-        'Namespace New Next Nil Not ' +
+        'Namespace New Next Not ' +
         'Of Optional Or ' +
         'ParamArray Private Property Protected Public ' +
         'Raise RaiseEvent Redim RemoveHandler Return ' +
         'Select Self Shared Soft Static Step Structure Sub Super ' +
         'Then To Try Until Using Var WeakAddressOf Wend While With Xor',
-      data_type:
+      type:
         'Auto Boolean CFStringRef CGFloat Color CString Currency ' +
         'Delegate Double Enumeration Int8 Int16 Int32 Int64 Integer Object ' +
-        'OSType PString Prt Short Single String Structure Text ' +
+        'OSType PString Ptr Short Single String Structure Text ' +
         'UInt8 UInt16 UInt32 UInt64 UInteger Variant WindowPtr WString',
+      built_in:
+        'App Date DateTime Dictionary EndOfLine FolderItem JSONItem MessageBox ' +
+        'RuntimeException System Thread Timer',
       literal:
         'True False Nil'
     },
     contains: [
-      hljs.QUOTE_STRING_MODE,
+      {
+        className: 'string',
+        begin: '"',
+        end: '"',
+        contains: [
+          { begin: '""' }
+        ]
+      },
       hljs.COMMENT('REM\\b', '$'),
       hljs.COMMENT('\'', '$'),
       hljs.COMMENT('\/\/', '$'),
       {
-        className: 'double',
+        className: 'number',
         variants: [
           { begin: '\\b\\d+\\.\\d+[eE]-?\\d+' },
-          { begin: '\\b\\d+\\.\\d+' }
-        ]
-      },
-      {
-        className: 'integer',
-        variants: [
+          { begin: '\\b\\d+\\.\\d+' },
           { begin: '\\b\\d+[eE]-?\\d+' },
           { begin: '\\b\\d+' },
           { begin: '\\&h[a-fA-F0-9]+' },
           { begin: '\\&o[0-7]+' },
-          { begin: '\\&b[0-1]+' }
-        ]
-      },
-      {
-        className: 'color',
-        begin: '\\&c',
-        contains: [
-          {
-            className: 'rgb_component',
-            begin: '[a-fA-F0-9]{2}'
-          }
+          { begin: '\\&b[0-1]+' },
+          { begin: '\\&c[a-fA-F0-9]{6}(?:[a-fA-F0-9]{2})?' }
         ]
       },
       {
         className: 'meta',
-        begin: '#Bad|#Else|#ElseIf|#EndIf|#If|#Pragma|#Tag'
+        begin: '#(?:ElseIf|EndIf|Else|If|Bad|Pragma|Tag|ExternalMethod)\\b'
       }
     ]
   };
