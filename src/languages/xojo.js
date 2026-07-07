@@ -1,7 +1,8 @@
 /*
 Language: Xojo
 Description: Xojo is a statically typed, cross-platform object-oriented programming language.
-Author: Dr Garry Pettet <contact@garrypettet.com>
+Original Author: Dr Garry Pettet <contact@garrypettet.com>
+Modified By: Patrick Salo
 Website: https://xojo.com
 */
 
