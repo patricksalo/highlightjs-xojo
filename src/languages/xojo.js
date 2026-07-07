@@ -25,7 +25,7 @@ export default function(hljs) {
       type:
         'Auto Boolean CFStringRef CGFloat Color CString Currency ' +
         'Delegate Double Enumeration Int8 Int16 Int32 Int64 Integer Object ' +
-        'OSType PString Ptr Short Single String Structure Text ' +
+        'OSType PString Ptr Short Single String Structure ' +
         'UInt8 UInt16 UInt32 UInt64 UInteger Variant WindowPtr WString',
       built_in:
         'App Date DateTime Dictionary EndOfLine FolderItem JSONItem MessageBox ' +
